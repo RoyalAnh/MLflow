@@ -26,7 +26,7 @@ Chạy các service cần thiết:
 - `MLflow Server`
 
 📌 **Cách chạy**:
-```bash
+
 docker-compose -f infra/docker-compose.yml up -d
 
 Đảm bảo các service đều đang chạy(`docker ps`).
