@@ -1,0 +1,61 @@
+services:
+  redpanda:
+    image: docker.redpanda.com/redpandadata/redpanda:v23.2.2
+    container_name: redpanda
+    command:
+      - redpanda
+      - start
+      - --overprovisioned
+      - --smp=1
+      - --memory=512M
+      - --reserve-memory=0M
+      - --node-id=0
+      - --check=false
+      - --kafka-addr=PLAINTEXT://0.0.0.0:9092
+      - --advertise-kafka-addr=PLAINTEXT://localhost:9092
+ 
+    ports:
+      - "9092:9092"     # Kafka API
+      - "9644:9644"     # Admin HTTP
+    volumes:
+      - redpanda_data:/var/lib/redpanda/data
+
+  cassandra:
+    image: cassandra:4.1
+    container_name: cassandra
+    ports:
+      - "9042:9042"
+    environment:
+      CASSANDRA_CLUSTER_NAME: "MARLCluster"
+      CASSANDRA_DC: "datacenter1"
+      CASSANDRA_ENDPOINT_SNITCH: "GossipingPropertyFileSnitch"
+    volumes:
+      - cassandra_data:/var/lib/cassandra
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest
+    container_name: mlflow
+    environment:
+      - MLFLOW_TRACKING_URI=http://0.0.0.0:5000
+    command: mlflow server --backend-store-uri sqlite:///mlflow.db --host 0.0.0.0
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlflow_logging:/mlflow
+
+  ray_head:
+    image: rayproject/ray:latest
+    container_name: ray_head
+    command: ray start --head --port=6379 --dashboard-host 0.0.0.0
+    ports:
+      - "8265:8265"     # Ray dashboard
+      - "8000:8000"     # Ray Serve
+    environment:
+      - RAY_MEMORY_MONITOR_ERROR_THRESHOLD=0.8
+    volumes:
+      - ray_data:/tmp/ray
+
+volumes:
+  redpanda_data:
+  cassandra_data:
+  ray_data:
