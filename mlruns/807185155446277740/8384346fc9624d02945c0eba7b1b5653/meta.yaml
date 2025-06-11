@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/807185155446277740/8384346fc9624d02945c0eba7b1b5653/artifacts
+end_time: 1749542037906
+entry_point_name: ''
+experiment_id: '807185155446277740'
+lifecycle_stage: active
+run_id: 8384346fc9624d02945c0eba7b1b5653
+run_name: gaudy-snipe-877
+run_uuid: 8384346fc9624d02945c0eba7b1b5653
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749541102692
+status: 3
+tags: []
+user_id: vht

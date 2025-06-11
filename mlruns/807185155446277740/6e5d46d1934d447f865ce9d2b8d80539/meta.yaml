@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/807185155446277740/6e5d46d1934d447f865ce9d2b8d80539/artifacts
+deleted_time: 1749541243266
+end_time: 1749176639678
+entry_point_name: ''
+experiment_id: '807185155446277740'
+lifecycle_stage: deleted
+run_id: 6e5d46d1934d447f865ce9d2b8d80539
+run_name: secretive-goose-401
+run_uuid: 6e5d46d1934d447f865ce9d2b8d80539
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749176637054
+status: 4
+tags: []
+user_id: vht

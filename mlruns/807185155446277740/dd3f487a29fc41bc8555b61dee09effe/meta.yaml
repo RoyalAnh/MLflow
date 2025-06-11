@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/807185155446277740/dd3f487a29fc41bc8555b61dee09effe/artifacts
+deleted_time: 1749541243280
+end_time: 1749175035887
+entry_point_name: ''
+experiment_id: '807185155446277740'
+lifecycle_stage: deleted
+run_id: dd3f487a29fc41bc8555b61dee09effe
+run_name: enthused-eel-400
+run_uuid: dd3f487a29fc41bc8555b61dee09effe
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749175025973
+status: 4
+tags: []
+user_id: vht

@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/807185155446277740/ad6903782c2449a694f7b82d04e7ef6a/artifacts
+deleted_time: 1749541243286
+end_time: 1749175806487
+entry_point_name: ''
+experiment_id: '807185155446277740'
+lifecycle_stage: deleted
+run_id: ad6903782c2449a694f7b82d04e7ef6a
+run_name: salty-shrike-341
+run_uuid: ad6903782c2449a694f7b82d04e7ef6a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749175803637
+status: 4
+tags: []
+user_id: vht

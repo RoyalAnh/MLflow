@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/807185155446277740/31d45754289c481fb8790f59190ff78a/artifacts
+deleted_time: 1749541243256
+end_time: 1749177600333
+entry_point_name: ''
+experiment_id: '807185155446277740'
+lifecycle_stage: deleted
+run_id: 31d45754289c481fb8790f59190ff78a
+run_name: auspicious-snail-908
+run_uuid: 31d45754289c481fb8790f59190ff78a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749177563067
+status: 4
+tags: []
+user_id: vht

@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/807185155446277740/5ce2eeacc53e46fabefe89c9e9179c49/artifacts
+deleted_time: 1749541243252
+end_time: 1749178402171
+entry_point_name: ''
+experiment_id: '807185155446277740'
+lifecycle_stage: deleted
+run_id: 5ce2eeacc53e46fabefe89c9e9179c49
+run_name: amazing-vole-664
+run_uuid: 5ce2eeacc53e46fabefe89c9e9179c49
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749178364210
+status: 4
+tags: []
+user_id: vht
