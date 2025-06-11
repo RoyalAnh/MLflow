@@ -70,8 +70,8 @@ docker-compose -f infra/docker-compose.yml up -d
 
 ## 6. Gửi request tới API inference
 -  Gửi request tới endpoint để lấy action dự đoán:
-  `curl -X POST -H "Content-Type: application/json" \
-  -d '{"agent_0": [0,0], "agent_1": [1,1]}' \
+  `curl -X POST -H "Content-Type: application/json" 
+  -d '{"agent_0": [0,0], "agent_1": [1,1]}' 
   http://localhost:8000/predict`
 
 -  Kết quả:
