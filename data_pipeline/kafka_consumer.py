@@ -4,6 +4,9 @@ from uuid import UUID
 from datetime import datetime
 from cassandra_utils import get_cassandra_session
 
+# For logging artifacts
+import mlflow
+
 TOPIC = "agent-observations"
 session = get_cassandra_session()
 
@@ -18,18 +21,26 @@ consumer = KafkaConsumer(
 
 print("Listening for messages...")
 
-for msg in consumer:
-    data = msg.value
-    print(f"Received: {data}")
+# Log to file for artifact
+log_file = "kafka_to_cassandra_log.jsonl"
+with open(log_file, "w") as fout:
+    for msg in consumer:
+        data = msg.value
+        print(f"Received: {data}")
 
-    session.execute("""
-        INSERT INTO observations (id, agent_id, timestamp, state, action, reward)
-        VALUES (%s, %s, %s, %s, %s, %s)
-    """, (
-        UUID(data["id"]),
-        data["agent_id"],
-        datetime.fromisoformat(data["timestamp"]),
-        data["state"],
-        data["action"],
-        float(data["reward"])
-    ))
+        fout.write(json.dumps(data) + "\n")
+        fout.flush()
+
+        session.execute("""
+            INSERT INTO observations (id, agent_id, timestamp, state, action, reward)
+            VALUES (%s, %s, %s, %s, %s, %s)
+        """, (
+            UUID(data["id"]),
+            data["agent_id"],
+            datetime.fromisoformat(data["timestamp"]),
+            data["state"],
+            data["action"],
+            float(data["reward"])
+        ))
+
+# In thực tế bạn nên upload file này lên MLflow ở phần train.py để tracking, hoặc thêm một bước upload ở đây nếu MLflow server luôn chạy.
