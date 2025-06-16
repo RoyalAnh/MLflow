@@ -1,6 +1,9 @@
 # MLFlow system
 # 🧠 Reinforcement Learning System Pipeline
 
+![Luồng dữ liệu](assets/workflow.png)
+
+
 Quy trình gồm 6 bước chính:
 
 1. [Khởi động hạ tầng (infra)](#1-khởi-động-hạ-tầng-infra)  
@@ -29,7 +32,7 @@ docker-compose -f infra/docker-compose.yml up -d
 ## 2. Sinh dữ liệu vào Kafka (data_pipeline)
 
 -  Sinh dữ liệu giả lập vào Kafka:
-  `python data_pipeline/kafka_producer.py --n 100`
+  `python data_pipeline/kafka_producer.py --n 10`
 
 -  (Tùy chọn) Đọc dữ liệu từ Kafka và ghi vào Cassandra:
   `python data_pipeline/kafka_consumer.py`
@@ -57,7 +60,7 @@ docker-compose -f infra/docker-compose.yml up -d
 ## 5. Triển khai inference API (ray_workflow)
 
 -  Chạy pipeline huấn luyện + triển khai inference API:
-  `python ray_workflow/deploy.py`
+  `python ray_deploy.py`
 
 -  Kết quả:
     Ray Serve khởi động endpoint inference tại http://localhost:8000/predict.
@@ -87,3 +90,11 @@ Gửi request inference:
 Kết quả cuối cùng:
 
   Có thể huấn luyện, đánh giá, và phục vụ mô hình RL đa tác tử trên dữ liệu thực/giả lập, theo dõi kết quả trên MLflow, và inference qua API.
+
+
+# Luồng mới: 
+- Dữ liệu sinh ra từ producer gửi vào Kafka, consumer lấy và ghi vào Cassandra.
+- Tập huấn luyện (train.py) lấy dữ liệu từ Cassandra để train mô hình RL (offline RL hoặc imitation learning).
+- train.py log đầy đủ thông tin lên MLflow: tham số, mô hình, artifact, batch dữ liệu đã train.
+- run_rollout.py thực hiện rollout với checkpoint đã train, log kết quả vào cùng MLflow run.
+- deploy.py lấy model/artifact từ MLflow, triển khai lên Ray Serve.
