@@ -24,7 +24,7 @@ Chạy các service cần thiết:
 
 📌 **Cách chạy**:
 
-docker-compose -f infra/docker-compose.yml up -d
+`docker-compose -f infra/docker-compose.yml up -d`
 
 Đảm bảo các service đều đang chạy(`docker ps`).
 
@@ -61,13 +61,14 @@ docker-compose -f infra/docker-compose.yml up -d
 
 -  Chạy pipeline huấn luyện + triển khai inference API:
   `python ray_deploy.py`
+  `python ray_deploy.py 92a0ff0310544dd0a99f02bd66021f1d`
 
 -  Kết quả:
     Ray Serve khởi động endpoint inference tại http://localhost:8000/predict.
 
 ## 6. Gửi request tới API inference
 -  Gửi request tới endpoint để lấy action dự đoán:
-  curl -X POST -H "Content-Type: application/json" -d "{\"agent_0\": [0,0], \"agent_1\": [1,1]}" http://localhost:8000/predict
+  `curl -X POST http://localhost:8000/predict -H "Content-Type: application/json" -d "{\"agent_0\": [0, 0], \"agent_1\": [1, 1]}"`
 
 
 -  Kết quả:
